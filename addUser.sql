@@ -1,0 +1,1 @@
+INSERT INTO users (full_name, email, password, phone_number, company_name, address, token) VALUES(%s, %s, %s %s, %s, %s, %s);

@@ -1,0 +1,130 @@
+{
+    "a": [
+        {
+            "id": "color_1",
+            "value": "#0000FF",
+            "label": "Color"
+        },
+        {
+            "id": "color_2",
+            "value": "#0000FF",
+            "label": "Color"
+        },
+        {
+            "id": "color_3",
+            "value": "#0000FF",
+            "label": "Color"
+        },
+        {
+            "id": "color_4",
+            "value": "#0000FF",
+            "label": "Color"
+        },
+        {
+            "id": "color_5",
+            "value": "#0000FF",
+            "label": "Color"
+        },
+        {
+            "id": "color_6",
+            "value": "#0000FF",
+            "label": "Color"
+        },
+                {
+            "id": "color_7",
+            "value": "#0000FF",
+            "label": "Color"
+        },
+                {
+            "id": "color_8",
+            "value": "#0000FF",
+            "label": "Color"
+        }
+    ],
+
+    "b": [
+        {
+            "id": "color_1",
+            "value": "#0000Fd",
+            "label": "Color"
+        },
+        {
+            "id": "color_2",
+            "value": "#0000Fh",
+            "label": "Color"
+        },
+        {
+            "id": "color_3",
+            "value": "#0000dF",
+            "label": "Color"
+        },
+        {
+            "id": "color_4",
+            "value": "#0000FF",
+            "label": "Color"
+        },
+        {
+            "id": "color_5",
+            "value": "#0000F1",
+            "label": "Color"
+        },
+        {
+            "id": "color_6",
+            "value": "#0000FF",
+            "label": "Color"
+        },
+                {
+            "id": "color_7",
+            "value": "#0000FF",
+            "label": "Color"
+        },
+                {
+            "id": "color_8",
+            "value": "#0000FD",
+            "label": "Color"
+        }
+    ],
+
+    "c": [
+        {
+            "id": "color_1",
+            "value": "#0000FF",
+            "label": "Color"
+        },
+        {
+            "id": "color_2",
+            "value": "#0000FF",
+            "label": "Color"
+        },
+        {
+            "id": "color_3",
+            "value": "#0000FF",
+            "label": "Color"
+        },
+        {
+            "id": "color_4",
+            "value": "#0000FB",
+            "label": "Color"
+        },
+        {
+            "id": "color_5",
+            "value": "#0000BF",
+            "label": "Color"
+        },
+        {
+            "id": "color_6",
+            "value": "#0000FF",
+            "label": "Color"
+        },
+                {
+            "id": "color_7",
+            "value": "#0000DF",
+            "label": "Color"
+        },
+                {
+            "id": "color_8",
+            "value": "#0000FF",
+            "label": "Color"
+        }
+    ]
+}
