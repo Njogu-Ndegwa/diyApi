@@ -105,12 +105,16 @@ WHERE email = %s;
                               INSERT INTO users (full_name, email, password, token) VALUES(%s, %s, %s, %s);
                               '''
                 param = (full_name, email, hashed_password, decoded_jwt)
-              
+
                 data = conn.query(query_string, param)
-                print(data, 'The Data')
+                
                 token = generate_confirmation_token(email)
-                emailSend = send_account_verification_email(
-                    token, email, full_name)
+                # emailSend = send_account_verification_email(
+                #     token, email, full_name)
+                
+                data = {
+                    'success': 'success'
+                }
 
         except Exception as e:
             data = {'message': str(e)}

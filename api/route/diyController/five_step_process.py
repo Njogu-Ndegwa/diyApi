@@ -24,7 +24,7 @@ def diyapis():
     business_name = request.json.get('business_name')
     template_id = request.json.get('template_id')
     email = request.json.get('email')
-    account_name = email
+    account_name = request.json.get('email')
     phone_number = request.json.get('phone_number')
     first_name = request.json.get('full_name')
     person_object = request.json.get('person_object')
@@ -32,7 +32,7 @@ def diyapis():
     api_password = 'qqcylt5yOJow'
 
     auth=(api_username, api_password)
-
+    print(template_id, 'Template Id-----35')
     site_name = create_website(auth, business_name, template_id)
     create_user_status_code = create_user(auth, person_object)
     if create_user_status_code == 204:
@@ -50,7 +50,7 @@ def diyapis():
         pass
 
 def create_website(auth, business_name, template_id):
-    print('Create Website')
+
     url = "https://api-sandbox.duda.co/api/sites/multiscreen/create"
 
     data = {
@@ -95,7 +95,7 @@ def create_user(auth, person_object):
 
 def assign_permissions(auth, account_name, site_name):
     print('Assign Permissions')
-    url = "https://api-sandbox.duda.co/api/accounts/dennisndegwa57%40gmail.com/sites/d57b6fbdd74f41e3b8308df2b5410359/permissions"
+    url = f"https://api-sandbox.duda.co/api/accounts/{account_name}/sites/{site_name}/permissions"
 
     payload = { "permissions": ["PUSH_NOTIFICATIONS", "REPUBLISH", "EDIT", "INSITE", "PUBLISH", "CUSTOM_DOMAIN", "RESET", "SEO", "STATS_TAB", "BLOG"] }
     headers = {
@@ -112,7 +112,7 @@ def assign_permissions(auth, account_name, site_name):
 
 def generate_sso_link(auth, account_name, site_name):
     print('Generate SSO Link')
-    url = "https://api-sandbox.duda.co/api/accounts/sso/dennisndegwa57%40gmail.com/link?site_name=d57b6fbdd74f41e3b8308df2b5410359"
+    url = f"https://api-sandbox.duda.co/api/accounts/sso/{account_name}/link?site_name={site_name}"
 
     headers = {"accept": "application/json"}
 

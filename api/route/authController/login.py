@@ -70,8 +70,9 @@ def login():
 
             hashed_password = str(user_password_result[0][0])
 
-            print(hashed_password, 'The Hashed Password')
-
+            # print(password_str, 'Password')
+            # print('-------74-------')
+            # print(check_password_hash(hashed_password, password_str), 'Check Password Hash')
             if len(user_password_result) > 0 and user_password_result[0][0]:
               hashed_password = str(user_password_result[0][0])
               print(check_password_hash(hashed_password, password_str), 'Check Password Hash')
@@ -95,8 +96,7 @@ def login():
                         'id': row[0],
                         'email': row[1],
                         'token': row[5],
-                        'full_name': row[6],
-                        'password': row[7]
+                        'full_name': row[6]
                     }
                     formatted_result.append(data)
                 data = formatted_result
