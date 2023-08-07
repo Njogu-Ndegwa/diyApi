@@ -23,16 +23,12 @@ five_step_process_api = Blueprint('five_step_process_api', __name__)
 def diyapis():
     business_name = request.json.get('business_name')
     template_id = request.json.get('template_id')
-    email = request.json.get('email')
-    account_name = request.json.get('email')
-    phone_number = request.json.get('phone_number')
-    first_name = request.json.get('full_name')
     person_object = request.json.get('person_object')
+    account_name = person_object['email']
     api_username = '29c00016'
     api_password = 'qqcylt5yOJow'
 
     auth=(api_username, api_password)
-    print(template_id, 'Template Id-----35')
     site_name = create_website(auth, business_name, template_id)
     create_user_status_code = create_user(auth, person_object)
     if create_user_status_code == 204:
@@ -76,6 +72,8 @@ def create_user(auth, person_object):
     first_name = person_object['first_name']
     email = person_object['email']
     phone = person_object['phone']
+
+    print(account_name, first_name, email)
     url = "https://api-sandbox.duda.co/api/accounts/create"
 
     headers = {
@@ -90,7 +88,7 @@ def create_user(auth, person_object):
     }
 
     response = requests.post(url, json=payload, headers=headers, auth=auth)
-    # print(response, 'Response')
+    print(response, 'Response---96')
     return response.status_code
 
 def assign_permissions(auth, account_name, site_name):
@@ -104,7 +102,7 @@ def assign_permissions(auth, account_name, site_name):
     }
 
     response = requests.post(url, headers=headers, json=payload, auth=auth)
-
+    print(response.text, 'Response.Text')
     assign_permissions_reponse_code = response.status_code
 
     return assign_permissions_reponse_code
@@ -118,6 +116,5 @@ def generate_sso_link(auth, account_name, site_name):
 
     response = requests.get(url, headers=headers, auth=auth)
 
-    # print(response, 'Response, ----114----')
     json_response = response.json()
     return json_response['url']
