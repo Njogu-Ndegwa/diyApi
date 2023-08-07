@@ -32,6 +32,8 @@ jobs:
         sftp_only: true
         password: f5T6uFbjPD$5kD9
 
+        
+
       # with:
       #   username: smartdata-sandbox-user
       #   server: 13.79.85.214
