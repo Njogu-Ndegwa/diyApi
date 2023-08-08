@@ -67,9 +67,9 @@ def login():
                                '''
             param = (email,)
             user_password_result = conn.query(check_user_password, param)
-
+            print(user_password_result, 'User Password Result')
             hashed_password = str(user_password_result[0][0])
-
+            print(hashed_password, 'The Hashed password')
             # print(password_str, 'Password')
             # print('-------74-------')
             # print(check_password_hash(hashed_password, password_str), 'Check Password Hash')
@@ -89,14 +89,16 @@ def login():
                 
                 param = (email, hashed_password)
                 data = conn.query(query_string, param)
-
+                print(data, 'Data--92---')
                 formatted_result = []
                 for row in data:
                     data = {
                         'id': row[0],
                         'email': row[1],
                         'token': row[5],
-                        'full_name': row[6]
+                        'full_name': row[6],
+                        'sso_link': row[8]
+                        
                     }
                     formatted_result.append(data)
                 data = formatted_result

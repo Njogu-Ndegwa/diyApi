@@ -8,6 +8,8 @@ from api.route.diyController.five_step_process import five_step_process_api
 from api.route.diyController.get_templates import get_templates_api
 from api.route.diyController.update_themes import update_theme_api
 from api.route.test import test_api
+from api.route.authController.delete import delete_api
+from api.route.diyController.saveSso import save_sso_api
 
 def create_app():
     app = Flask(__name__)
@@ -31,6 +33,8 @@ def create_app():
     app.register_blueprint(get_templates_api, url_prefix='/api')
     app.register_blueprint(update_theme_api, url_prefix='/api')
     app.register_blueprint(test_api, url_prefix='/api')
+    app.register_blueprint(delete_api, url_prefix='/api')
+    app.register_blueprint(save_sso_api, url_prefix='/api')
 
 
     return app

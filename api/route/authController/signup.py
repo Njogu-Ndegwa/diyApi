@@ -77,7 +77,9 @@ FROM users
 WHERE email = %s;
                                 '''
             param = (email,)
+            print(email, 'Email....')
             check_user_result = conn.query(check_user_query, param)
+            print(check_user_result, 'Check User Result')
             if check_user_result[0][0] != 'User Not Found':
                 return make_response('A similar user already exists', 400)
 
@@ -107,6 +109,7 @@ WHERE email = %s;
                 param = (full_name, email, hashed_password, decoded_jwt)
 
                 data = conn.query(query_string, param)
+                print(data, 'Sign Up Data---112---')
                 
                 token = generate_confirmation_token(email)
                 # emailSend = send_account_verification_email(
