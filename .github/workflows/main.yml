@@ -24,14 +24,21 @@ jobs:
       #   sftp_only: true
       #   password: InfomobySmartData2023!!
 
+      # with:
+      #   username: smart-118
+      #   server: 104.41.201.128
+      #   local_path: '.'
+      #   remote_path: './sites/diyApi/'
+      #   sftp_only: true
+      #   password: f5T6uFbjPD$5kD9
+
       with:
         username: smart-118
         server: 104.41.201.128
         local_path: '.'
-        remote_path: './sites/diyApi/'
+        remote_path: './sites/diyApi2/'
         sftp_only: true
         password: f5T6uFbjPD$5kD9
-
         
 
       # with:
