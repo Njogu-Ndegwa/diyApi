@@ -50,9 +50,9 @@ def diyapis():
 
             return jsonify(data)
         else:
-            return make_response('Permissions not assigned')
+            return make_response('Permissions not assigned',  400)
     else:
-        return make_response('Client already exists in the Database')
+        return make_response('Client already exists in the Database', 400)
 
 def create_website(auth, business_name, business_phone, business_email):
 
