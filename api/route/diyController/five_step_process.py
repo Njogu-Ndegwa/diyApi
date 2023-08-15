@@ -11,6 +11,7 @@ from passlib.apps import custom_app_context as pwd_context
 from werkzeug.security import check_password_hash, generate_password_hash
 # import quickemailverification
 import mysql.connector
+from api.route.diyController.save_account_and_site import save_accountname_sitename
 
 
 BASE_PATH = Path(__file__).resolve().parent.parent.parent.parent
@@ -24,34 +25,46 @@ def diyapis():
     business_name = request.json.get('business_name')
     template_id = request.json.get('template_id')
     person_object = request.json.get('person_object')
+    user_id = request.json.get('user_id')
     account_name = person_object['email']
+    business_phone = request.json.get('business_phone_number')
+    business_email = request.json.get('business_email')
     api_username = '29c00016'
     api_password = 'qqcylt5yOJow'
 
     auth=(api_username, api_password)
-    site_name = create_website(auth, business_name, template_id)
+    site_name = create_website(auth, business_name, business_phone, business_email)
     create_user_status_code = create_user(auth, person_object)
     if create_user_status_code == 204:
         assign_permissions_reponse_code = assign_permissions(auth, account_name, site_name)
         if assign_permissions_reponse_code ==  204:
             sso_link = generate_sso_link(auth, account_name, site_name)
             data = {
+                "account_name": account_name,
+                "site_name":site_name,
                 "sso_link": sso_link
+
             }
+            res = save_accountname_sitename(account_name, site_name, template_id, user_id)
+            print(res, '--43--')
 
             return jsonify(data)
         else:
-            pass
+            return make_response('Permissions not assigned')
     else:
-        pass
+        return make_response('Client already exists in the Database')
 
-def create_website(auth, business_name, template_id):
+def create_website(auth, business_name, business_phone, business_email):
 
     url = "https://api-sandbox.duda.co/api/sites/multiscreen/create"
 
     data = {
-            'template_id': template_id,
-             "site_data": { "site_business_info": { "business_name": business_name } }          
+            'template_id': '1000440',
+             "site_data": { "site_business_info": {  
+                "email": business_email,
+                "phone_number": business_phone,
+                "business_name": business_name 
+                } } ,        
         }
     
     headers = {
@@ -110,11 +123,13 @@ def assign_permissions(auth, account_name, site_name):
 
 def generate_sso_link(auth, account_name, site_name):
     print('Generate SSO Link')
-    url = f"https://api-sandbox.duda.co/api/accounts/sso/{account_name}/link?site_name={site_name}"
+    # url = f"https://api-sandbox.duda.co/api/accounts/sso/{account_name}/link?site_name={site_name}"
+    url = f"https://api-sandbox.duda.co/api/accounts/sso/{account_name}/link?site_name={site_name}&target=RESET_BASIC"
 
     headers = {"accept": "application/json"}
 
     response = requests.get(url, headers=headers, auth=auth)
 
+    print(response.json(), 'The Response')
     json_response = response.json()
     return json_response['url']

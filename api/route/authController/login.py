@@ -97,7 +97,9 @@ def login():
                         'email': row[1],
                         'token': row[5],
                         'full_name': row[6],
-                        'sso_link': row[8]
+                        'account_name': row[8],
+                        'site_name':row[9],
+                        'template_id':row[10]
                         
                     }
                     formatted_result.append(data)
