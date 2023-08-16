@@ -27,11 +27,11 @@ def create_token():
         <CompanyToken>8D3DA73D-9D7F-4E09-96D4-3D44E7A83EA3</CompanyToken>
         <Request>createToken</Request>
         <Transaction>
-            <PaymentAmount>{payment_amount}</PaymentAmount>
+            <PaymentAmount>1</PaymentAmount>
             <PaymentCurrency>KES</PaymentCurrency>
             <CompanyRef>49FKEOA</CompanyRef>
-            <RedirectURL>http://www.domain.com/payurl.php</RedirectURL>
-            <BackURL>http://www.domain.com/backurl.php </BackURL>
+            <RedirectURL>https://diy.infomoby.com/verify-payment</RedirectURL>
+            <BackURL>https://diy.infomoby.com/payment</BackURL>
             <CompanyRefUnique>0</CompanyRefUnique>
             <PTL>5</PTL>
         </Transaction>
