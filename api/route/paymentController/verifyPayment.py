@@ -39,11 +39,14 @@ def verify_payment():
     # Find the MobilePaymentRequest element
     mobile_payment_request = root.find(".//MobilePaymentRequest")
     transaction_amount_request = root.find(".//TransactionFinalAmount")
-    result = root.find(".//Result")
+    transaction_status_request = root.find(".//Result")
 
+    # print(transaction_status, 'Transaction Status')
     if mobile_payment_request is not None:
         mobile_payment_status = mobile_payment_request.text
         transaction_amount = transaction_amount_request.text
+        transaction_status = transaction_status_request.text
+        print(transaction_status, 'Status')
         print(mobile_payment_status, transaction_amount, '-------46-----', flush=True)
         if mobile_payment_status == 'Paid':
             data = {
@@ -52,6 +55,12 @@ def verify_payment():
             }
             return jsonify(data)
 
+        elif transaction_status == '000':
+            data = {
+                'status': 'paid',
+                'amount': transaction_amount
+            }
+            return jsonify(data)
         else:
             data = {
 
