@@ -18,6 +18,7 @@ from api.route.diyController.generate_sso import generate_sso_api
 from api.route.diyController.getSite import get_sites_api
 
 
+
 def create_app():
     app = Flask(__name__)
 

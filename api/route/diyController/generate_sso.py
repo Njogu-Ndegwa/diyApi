@@ -26,6 +26,8 @@ def generate_sso():
     sso_type = request.json.get('sso_type')
 
     print(sso_type, 'SSO type')
+    print('Site Name', site_name)
+    print(account_name, 'Account Name')
     url = f"https://api-sandbox.duda.co/api/accounts/sso/{account_name}/link?site_name={site_name}&target={sso_type}"
 
     headers = {"accept": "application/json"}
@@ -36,7 +38,7 @@ def generate_sso():
     auth=(api_username, api_password)
 
     response = requests.get(url, headers=headers, auth=auth)
-    # print(response, 'The Response')
+    print(response.json(), 'The Response')
     json_response = response.json()
     sso_link = json_response['url']
     data = {
