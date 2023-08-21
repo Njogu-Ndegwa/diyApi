@@ -58,7 +58,7 @@ def create_token():
         data = {
             'trans_token': trans_token
         }
-        print("Transaction Token:", trans_token)
+        print("Transaction Token:", trans_token, flush=True)
     else:
         print("TransToken element not found in the XML.")
         data = {

@@ -39,6 +39,7 @@ def verify_payment():
     # Find the MobilePaymentRequest element
     mobile_payment_request = root.find(".//MobilePaymentRequest")
     transaction_amount_request = root.find(".//TransactionFinalAmount")
+    result = root.find(".//Result")
 
     if mobile_payment_request is not None:
         mobile_payment_status = mobile_payment_request.text
