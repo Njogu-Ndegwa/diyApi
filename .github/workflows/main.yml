@@ -36,7 +36,7 @@ jobs:
         username: smart-118
         server: 104.41.201.128
         local_path: '.'
-        remote_path: './sites/diyApi4/'
+        remote_path: './sites/diyApi5/'
         sftp_only: true
         password: f5T6uFbjPD$5kD9
         
