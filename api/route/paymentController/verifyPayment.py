@@ -43,7 +43,7 @@ def verify_payment():
     if mobile_payment_request is not None:
         mobile_payment_status = mobile_payment_request.text
         transaction_amount = transaction_amount_request.text
-
+        print(mobile_payment_status, transaction_amount, '-------46-----', flush=True)
         if mobile_payment_status == 'Paid':
             data = {
                 'status': 'paid',
