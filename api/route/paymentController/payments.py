@@ -27,7 +27,7 @@ def create_token():
         <CompanyToken>8D3DA73D-9D7F-4E09-96D4-3D44E7A83EA3</CompanyToken>
         <Request>createToken</Request>
         <Transaction>
-            <PaymentAmount>1</PaymentAmount>
+            <PaymentAmount>{payment_amount}</PaymentAmount>
             <PaymentCurrency>KES</PaymentCurrency>
             <CompanyRef>49FKEOA</CompanyRef>
             <RedirectURL>https://diy.infomoby.com/verify-payment</RedirectURL>
@@ -46,8 +46,8 @@ def create_token():
     '''
 
     response = requests.post(url, headers=headers, data=xml_data)
-    print(response.status_code)
-    print(response.text)
+    print(response.status_code, '49---------------')
+    print(response.text, '50--------------')
     # Parse the XML response
     root = ET.fromstring(response.text)
 
