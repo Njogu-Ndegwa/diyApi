@@ -16,6 +16,7 @@ from api.route.paymentController.payWithCard import card_payment_api
 from api.route.paymentController.verifyPayment import verify_payment_api
 from api.route.diyController.generate_sso import generate_sso_api
 from api.route.diyController.getSite import get_sites_api
+from api.route.diyController.publishApi import publish_site_api
 
 
 
@@ -49,6 +50,7 @@ def create_app():
     app.register_blueprint(verify_payment_api, url_prefix='/api')
     app.register_blueprint(generate_sso_api, url_prefix='/api')
     app.register_blueprint(get_sites_api, url_prefix='/api')
+    app.register_blueprint(publish_site_api, url_prefix='/api')
 
 
     return app
