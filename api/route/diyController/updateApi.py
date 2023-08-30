@@ -25,10 +25,10 @@ def update_site():
     url = f"https://api-sandbox.duda.co/api/sites/multiscreen/update/{site_name}"
 
     headers = {"accept": "application/json"}
-
+    payload = { "site_domain": "gdfgdf" }
     api_username = '29c00016'
     api_password = 'qqcylt5yOJow'
 
-    response = requests.get(url, headers=headers, auth=(api_username, api_password))
+    response = requests.get(url, json=payload, headers=headers, auth=(api_username, api_password))
 
     return response.json()

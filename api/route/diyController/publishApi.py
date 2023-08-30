@@ -22,6 +22,7 @@ publish_site_api = Blueprint('publish_site_api', __name__)
 
 def publish_site():
     site_name = request.json.get('site_name')
+    domain = request.json.get('domain')
     url = f"https://api-sandbox.duda.co/api/sites/multiscreen/publish/{site_name}"
 
     headers = {"accept": "application/json"}
@@ -31,4 +32,25 @@ def publish_site():
 
     response = requests.get(url, headers=headers, auth=(api_username, api_password))
 
-    return response.json()
+    json_response = response.json()
+    payload = { "site_domain": domain }
+    if json_response.response_code == 204:
+        update_url = f"https://api-sandbox.duda.co/api/sites/multiscreen/update/{site_name}"
+        response = requests.get(update_url, json=payload, headers=headers, auth=(api_username, api_password))
+        json_response = response.json()
+        if json_response.response_code == 204:
+            data = {
+                'message': 'success'
+            }
+            return jsonify(data)
+        else:
+            data = {
+                'message': 'error'
+            } 
+            return jsonify(data)
+        
+    else:
+        data = {
+                'message': 'error'
+            } 
+        return jsonify(data)
