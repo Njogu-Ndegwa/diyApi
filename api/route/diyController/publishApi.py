@@ -32,13 +32,13 @@ def publish_site():
     api_password = 'qqcylt5yOJow'
 
     response = requests.post(url, headers=headers, auth=(api_username, api_password))
-    print(response, 'Response--35---')
+    print(response, 'Response--35---', flush= True)
     payload = { "site_domain": domain }
     if response.status_code == 204:
         update_url = f"https://api-sandbox.duda.co/api/sites/multiscreen/update/{site_name}"
         response = requests.post(update_url, json=payload, headers=headers, auth=(api_username, api_password))
 
-        print(response, 'Response--41---')
+        print(response, 'Response--41---', flush=True)
 
         if response.status_code == 204:
             data = {
