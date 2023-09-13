@@ -17,7 +17,8 @@ from api.route.paymentController.verifyPayment import verify_payment_api
 from api.route.diyController.generate_sso import generate_sso_api
 from api.route.diyController.getSite import get_sites_api
 from api.route.diyController.publishApi import publish_site_api
-
+from api.route.emailController.finance_email import send_mail_finance_api
+from api.route.diyController.hire_proffessional import hire_professional_api
 
 
 def create_app():
@@ -51,7 +52,8 @@ def create_app():
     app.register_blueprint(generate_sso_api, url_prefix='/api')
     app.register_blueprint(get_sites_api, url_prefix='/api')
     app.register_blueprint(publish_site_api, url_prefix='/api')
-
+    app.register_blueprint(send_mail_finance_api, url_prefix='/api')
+    app.register_blueprint(hire_professional_api, url_prefix='/api')
 
     return app
 

@@ -23,7 +23,7 @@ publish_site_api = Blueprint('publish_site_api', __name__)
 def publish_site():
     site_name = request.json.get('site_name')
     domain = request.json.get('domain')
-    print(site_name, domain, '-------26-----')
+
     url = f"https://api-sandbox.duda.co/api/sites/multiscreen/publish/{site_name}"
 
     headers = {"accept": "application/json"}
