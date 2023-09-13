@@ -40,7 +40,7 @@ def hire_proffesional_email(full_name, email_address, phone_number, communicatio
         # "MAIL_USERNAME": 'markgichohi24@',
         # "MAIL_PASSWORD": 'RNRFUgJwZPeJBAbrX3XwAA'
     }
-    emailto = 'dennisndegwa57@gmail.com'
+    emailto = email_address
 
     app.config.update(mail_settings)
 
