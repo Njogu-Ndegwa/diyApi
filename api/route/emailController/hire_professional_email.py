@@ -46,7 +46,7 @@ def hire_proffesional_email(full_name, email_address, phone_number, communicatio
 
     subject = "Hire Proffessional" 
     msg = Message(subject, sender = app.config.get('MAIL_USERNAME'), recipients = [emailto])
-    msg.html=render_template("hire_professional_client.html", full_name=full_name, email_address=email_address, phone_number=phone_number, communication_mode=communication_mode, others=others, assistance_type=assistance_type)
+    msg.html=render_template("hire_professional.html", full_name=full_name, email_address=email_address, phone_number=phone_number, communication_mode=communication_mode, others=others, assistance_type=assistance_type)
     
     # return render_template("home.html", confirm_msg=confirm_msg)
 

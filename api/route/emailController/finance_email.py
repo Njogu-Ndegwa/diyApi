@@ -44,10 +44,10 @@ class MailHandlerClass:
 
       app.config.update(mail_settings)
 
-      subject = "Hire Professional" 
+      subject = "Finance Email" 
       print(subject)
       msg = Message(subject, sender = app.config.get('MAIL_USERNAME'), recipients = [emailto])
-      msg.html=render_template("hire_professional_client.html")
+      msg.html=render_template("finace_email.html")
       
       # return render_template("home.html", confirm_msg=confirm_msg)
 
