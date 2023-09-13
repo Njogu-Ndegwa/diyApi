@@ -12,6 +12,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 # import quickemailverification
 import mysql.connector
 from api.route.emailController.hire_professional_email import hire_proffesional_email
+from api.route.emailController.hire_professional_client_email import hire_proffesional_client_email
 
 BASE_PATH = Path(__file__).resolve().parent.parent.parent.parent
 load_dotenv(join(BASE_PATH, '.env'))
@@ -39,4 +40,5 @@ def hire_proffesional():
     }
     response = hire_proffesional_email(full_name, email_address, phone_number, communication_mode, other, assistance_type)
     print(response)
+    hire_proffesional_client_email(email_address)
     return jsonify(data)

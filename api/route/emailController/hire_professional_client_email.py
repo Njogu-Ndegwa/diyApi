@@ -19,7 +19,7 @@ load_dotenv(join(BASE_PATH, '.env'))
 #   def __init__(self):
 #     pass
 
-def hire_proffesional_email(full_name, email_address, phone_number, communication_mode, others, assistance_type):
+def hire_proffesional_client_email( email_address):
     app = Flask(__name__)
 
     mail_settings = {
@@ -40,13 +40,13 @@ def hire_proffesional_email(full_name, email_address, phone_number, communicatio
         # "MAIL_USERNAME": 'markgichohi24@',
         # "MAIL_PASSWORD": 'RNRFUgJwZPeJBAbrX3XwAA'
     }
-    emailto = 'dennisndegwa57@gmail.com'
+    emailto = email_address
 
     app.config.update(mail_settings)
 
     subject = "Hire Proffessional" 
     msg = Message(subject, sender = app.config.get('MAIL_USERNAME'), recipients = [emailto])
-    msg.html=render_template("hire_professional_client.html", full_name=full_name, email_address=email_address, phone_number=phone_number, communication_mode=communication_mode, others=others, assistance_type=assistance_type)
+    msg.html=render_template("hire_professional_client.html")
     
     # return render_template("home.html", confirm_msg=confirm_msg)
 
@@ -64,42 +64,3 @@ def hire_proffesional_email(full_name, email_address, phone_number, communicatio
         data = {'message': str(e)}
 
     return data
-
-send_mail_finance_api = Blueprint('send_mail_finance_api', __name__)
-
-@send_mail_finance_api.route('/send_mail_finance', methods=['POST'])
-
-def send_mail_finance():
-    """
-    fetchemployees with various available filters
-    ---
-    tags:
-      - fetchemployees API endpoints
-    parameters:
-      - name: query_string
-        in: query
-        type: string
-        required: false
-        description: any fetchemployees parameter from database
-      - name: start
-        in: query
-        type: int
-        required: false
-        description: any fetchdecisionmakerbyid parameter from user
-      - name: offset
-        in: query
-        type: int
-        required: false
-        description: any fetchdecisionmakerbyid parameter from user
-    responses:
-      500:
-        description: Error description!
-      200:
-        description: A list of employees based on fetchemployees params
-    """
-    emailto = request.json.get('emailto')
-    # emailFrom = request.json.get('emailfrom')
-    # senderName = request.json.get('name')
-    # message = request.json.get('message')
-
-    return MailHandlerClass.send_mail_setup(emailto)
