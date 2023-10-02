@@ -9,7 +9,6 @@ from flask import Blueprint, jsonify, make_response, request, abort
 from passlib.apps import custom_app_context as pwd_context
 from werkzeug.security import check_password_hash, generate_password_hash
 # import quickemailverification
-import mysql.connector
 from api.route.configController.database import MySQLConnection
 import random
 from api.route.emailController.reset_password_email import send_reset_password_email
