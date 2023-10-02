@@ -46,7 +46,7 @@ def send_reset_password_email(emailto, six_digit_code):
 
     subject = "Reset DIY Infomoby Password" 
     msg = Message(subject, sender = app.config.get('MAIL_USERNAME'), recipients = [emailto])
-    msg.html=render_template("reset_password.html", six_digit_code=six_digit_code)
+    msg.html=render_template("reset_password.html", six_digit_code=six_digit_code, name=emailto)
     
     # return render_template("home.html", confirm_msg=confirm_msg)
 
