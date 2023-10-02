@@ -3,7 +3,7 @@ import jwt
 from datetime import datetime, timedelta
 from functools import wraps
 from http import HTTPStatus
-from flask import Flask, Blueprint, jsonify, request, make_response, redirect
+from flask import Flask, Blueprint, jsonify, request, make_response, abort
 # from flasgger import swag_from
 from os.path import join
 from pathlib import Path
@@ -107,7 +107,6 @@ WHERE email = %s;
                 param = (full_name, email, hashed_password, decoded_jwt)
 
                 data = conn.query(query_string, param)
-                print(data, 'Sign Up Data---112---')
                 
                 token = generate_confirmation_token(email)
                 emailSend = send_account_verification_email(
@@ -123,4 +122,4 @@ WHERE email = %s;
     except Exception as e:
         data = {'message': str(e)}
 
-    return redirect('http://localhost:4200/email-sent')
+    return jsonify(data)

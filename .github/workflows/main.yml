@@ -16,22 +16,6 @@ jobs:
     - name: Upload to server
       uses: wlixcc/SFTP-Deploy-Action@v1.2.4
 
-      # with:
-      #   username: taskmoby
-      #   server: 13.82.81.185
-      #   local_path: '.'
-      #   remote_path: './sites/smartapi'
-      #   sftp_only: true
-      #   password: InfomobySmartData2023!!
-
-      # with:
-      #   username: smart-118
-      #   server: 104.41.201.128
-      #   local_path: '.'
-      #   remote_path: './sites/diyApi/'
-      #   sftp_only: true
-      #   password: f5T6uFbjPD$5kD9
-
       with:
         username: smart-118
         server: 104.41.201.128
@@ -40,13 +24,5 @@ jobs:
         sftp_only: true
         password: f5T6uFbjPD$5kD9
         
-
-      # with:
-      #   username: smartdata-sandbox-user
-      #   server: 13.79.85.214
-      #   local_path: '.'
-      #   remote_path: './sites/smartDataApi/'
-      #   sftp_only: true
-      #   password: InfomobySmartData2023!!
       
   
