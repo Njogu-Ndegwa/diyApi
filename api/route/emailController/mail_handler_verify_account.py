@@ -28,7 +28,7 @@ class MailHandlerClass:
             "MAIL_USE_TLS": False,
             "MAIL_USE_SSL": True,
             "MAIL_USERNAME": 'no-reply@africa118.com',
-            "MAIL_PASSWORD": 'JRYKenS%H9&52hY'
+            "MAIL_PASSWORD": 'Resource2030'
             
             # "MAIL_SERVER": 'smtp.mandrillapp.com',
             # "MAIL_PORT": 587,
@@ -42,7 +42,7 @@ class MailHandlerClass:
       app.config.update(mail_settings)
       confirm_url = url_for('confirmAccount_api.confirmAccount', token=token, _external=True, _scheme='https')
 
-      subject = "Welcome to SmartData" 
+      subject = "Welcome to DIY Infomoby" 
       msg = Message(subject, sender = app.config.get('MAIL_USERNAME'), recipients = [recepientEmail])
       msg.html=render_template("verify_user_account.html",confirm_url = confirm_url,name=recipientName)
       

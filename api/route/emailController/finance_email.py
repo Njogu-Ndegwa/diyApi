@@ -47,7 +47,7 @@ class MailHandlerClass:
       subject = "Finance Email" 
       print(subject)
       msg = Message(subject, sender = app.config.get('MAIL_USERNAME'), recipients = [emailto])
-      msg.html=render_template("finace_email.html")
+      msg.html=render_template("email_to_finance.html")
       
       # return render_template("home.html", confirm_msg=confirm_msg)
 

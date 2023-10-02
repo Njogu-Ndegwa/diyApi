@@ -4,7 +4,6 @@ from os.path import join
 from pathlib import Path
 
 from api.route.authController.acount_verification_token import confirm_token
-from api.route.configController.db_connect import Neo4jConnection
 from dotenv import load_dotenv
 # from flasgger import swag_from
 from flask import Blueprint, jsonify, make_response, redirect, request
@@ -62,8 +61,9 @@ SELECT email_verification_status FROM users WHERE email = %s
                                 '''
             param = (email_var,)
             check_user_result = conn.query(check_user_query, param)
+            print(check_user_result, '----65---')
             if check_user_result[0] == True:
-              return redirect('http://localhost:4200/account-verification-status-warning')
+              return redirect('https://diy.infomoby.com/account-verification-status-warning')
 
             else:  
               print('----70----')
@@ -77,7 +77,8 @@ WHERE
 
               param = (email_var,)
               data = conn.query(query_string, param)
-              return redirect('http://localhost:4200/account-verification-status-success')
+              print(data, '------81-----')
+              return redirect('https://diy.infomoby.com/account-verification-status-success')
  
         except Exception as e:
             data = {'message': str(e)}
@@ -85,6 +86,6 @@ WHERE
     except Exception as e:
         data = {'message': str(e)}
 
-    return redirect('http://localhost:4200/login')
+    return redirect('https://diy.infomoby.com/login')
 
 

@@ -3,14 +3,14 @@ import jwt
 from datetime import datetime, timedelta
 from functools import wraps
 from http import HTTPStatus
-from flask import Flask, Blueprint, jsonify, request, make_response, abort
+from flask import Flask, Blueprint, jsonify, request, make_response, redirect
 # from flasgger import swag_from
 from os.path import join
 from pathlib import Path
 from dotenv import load_dotenv
 from passlib.apps import custom_app_context as pwd_context
 from api.route.authController.acount_verification_token import generate_confirmation_token
-from api.route.configController.mail_handler_verify_account import send_account_verification_email
+from api.route.emailController.mail_handler_verify_account import send_account_verification_email
 # import quickemailverification
 import mysql.connector
 from api.route.configController.database import MySQLConnection
@@ -77,9 +77,7 @@ FROM users
 WHERE email = %s;
                                 '''
             param = (email,)
-            print(email, 'Email....')
             check_user_result = conn.query(check_user_query, param)
-            print(check_user_result, 'Check User Result')
             if check_user_result[0][0] != 'User Not Found':
                 return make_response('A similar user already exists', 400)
 
@@ -112,9 +110,9 @@ WHERE email = %s;
                 print(data, 'Sign Up Data---112---')
                 
                 token = generate_confirmation_token(email)
-                # emailSend = send_account_verification_email(
-                #     token, email, full_name)
-                
+                emailSend = send_account_verification_email(
+                    token, email, full_name)
+                print(emailSend, 'Email...')
                 data = {
                     'success': 'success'
                 }
@@ -125,4 +123,4 @@ WHERE email = %s;
     except Exception as e:
         data = {'message': str(e)}
 
-    return jsonify(data)
+    return redirect('http://localhost:4200/email-sent')

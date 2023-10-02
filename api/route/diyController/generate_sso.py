@@ -24,21 +24,19 @@ def generate_sso():
     account_name = request.json.get('account_name')
     site_name = request.json.get('site_name')
     sso_type = request.json.get('sso_type')
+    duda_endpoint = os.environ.get('DUDA_ENDPOINT')
+    api_username = os.environ.get('DUDA_USERNAME')
+    api_password = os.environ.get('DUDA_PASSWORD')
+    url = f"{duda_endpoint}/accounts/sso/{account_name}/link?site_name={site_name}&target={sso_type}"
 
-    print(sso_type, 'SSO type')
-    print('Site Name', site_name)
-    print(account_name, 'Account Name')
-    url = f"https://api-sandbox.duda.co/api/accounts/sso/{account_name}/link?site_name={site_name}&target={sso_type}"
-
-    headers = {"accept": "application/json"}
-
-    api_username = '29c00016'
-    api_password = 'qqcylt5yOJow'
+    headers = {
+        "accept": "application/json",
+        "User-Agent": "Africa 118"
+        }
 
     auth=(api_username, api_password)
 
     response = requests.get(url, headers=headers, auth=auth)
-    print(response.json(), 'The Response')
     json_response = response.json()
     sso_link = json_response['url']
     data = {

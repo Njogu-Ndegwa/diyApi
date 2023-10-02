@@ -10,7 +10,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from passlib.apps import custom_app_context as pwd_context
 from api.route.authController.acount_verification_token import generate_confirmation_token
-from api.route.configController.mail_handler_verify_account import send_account_verification_email
+from api.route.emailController.mail_handler_verify_account import send_account_verification_email
 # import quickemailverification
 import mysql.connector
 

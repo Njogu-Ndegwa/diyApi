@@ -12,7 +12,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 # import quickemailverification
 import mysql.connector
 from api.route.diyController.save_account_and_site import save_accountname_sitename
-
+duda_endpoint = os.environ.get('DUDA_ENDPOINT')
 
 BASE_PATH = Path(__file__).resolve().parent.parent.parent.parent
 load_dotenv(join(BASE_PATH, '.env'))
@@ -29,9 +29,9 @@ def diyapis():
     account_name = person_object['email']
     business_phone = request.json.get('business_phone_number')
     business_email = request.json.get('business_email')
-    api_username = '29c00016'
-    api_password = 'qqcylt5yOJow'
 
+    api_username = os.environ.get('DUDA_USERNAME')
+    api_password = os.environ.get('DUDA_PASSWORD')
     auth=(api_username, api_password)
     site_name = create_website(auth, business_name, business_phone, business_email)
     create_user_status_code = create_user(auth, person_object)
@@ -46,8 +46,6 @@ def diyapis():
 
             }
             res = save_accountname_sitename(account_name, site_name, template_id, user_id)
-            print(res, '--43--')
-
             return jsonify(data)
         else:
             return make_response('Permissions not assigned',  400)
@@ -55,8 +53,7 @@ def diyapis():
         return make_response('Client already exists in the Database', 400)
 
 def create_website(auth, business_name, business_phone, business_email):
-
-    url = "https://api-sandbox.duda.co/api/sites/multiscreen/create"
+    url = f"{duda_endpoint}/sites/multiscreen/create"
 
     data = {
             'template_id': '1000440',
@@ -70,28 +67,26 @@ def create_website(auth, business_name, business_phone, business_email):
     headers = {
         "accept": "application/json",
         "content-type": "application/json",
-        "User-Agent": "User Agent"
+        "User-Agent": "Africa 118"
     }
 
     response = requests.post(url, headers=headers, json=data, auth=auth)
-
+    print(response)
     json_response = response.json()
     return json_response['site_name']
 
 
 def create_user(auth, person_object):
-    print('Create User')
     account_name = person_object['email']
     first_name = person_object['first_name']
     email = person_object['email']
     phone = person_object['phone']
 
-    print(account_name, first_name, email)
-    url = "https://api-sandbox.duda.co/api/accounts/create"
-
+    url = f"{duda_endpoint}/accounts/create"
     headers = {
         "accept": "application/json",
-        "content-type": "application/json"
+        "content-type": "application/json",
+        "User-Agent": "Africa 118"
     }
 
     payload = {
@@ -105,31 +100,28 @@ def create_user(auth, person_object):
     return response.status_code
 
 def assign_permissions(auth, account_name, site_name):
-    print('Assign Permissions')
-    url = f"https://api-sandbox.duda.co/api/accounts/{account_name}/sites/{site_name}/permissions"
-
+    url = f"{duda_endpoint}/accounts/{account_name}/sites/{site_name}/permissions"
     payload = { "permissions": ["PUSH_NOTIFICATIONS", "REPUBLISH", "EDIT", "INSITE", "PUBLISH", "CUSTOM_DOMAIN", "RESET", "SEO", "STATS_TAB", "BLOG"] }
     headers = {
         "accept": "application/json",
-        "content-type": "application/json"
+        "content-type": "application/json",
+        "User-Agent": "Africa 118"
     }
 
     response = requests.post(url, headers=headers, json=payload, auth=auth)
-    print(response.text, 'Response.Text')
     assign_permissions_reponse_code = response.status_code
 
     return assign_permissions_reponse_code
 
 
 def generate_sso_link(auth, account_name, site_name):
-    print('Generate SSO Link')
-    # url = f"https://api-sandbox.duda.co/api/accounts/sso/{account_name}/link?site_name={site_name}"
-    url = f"https://api-sandbox.duda.co/api/accounts/sso/{account_name}/link?site_name={site_name}&target=RESET_BASIC"
-
-    headers = {"accept": "application/json"}
+    url = f"{duda_endpoint}/accounts/sso/{account_name}/link?site_name={site_name}&target=RESET_BASIC"
+    headers = {
+        "accept": "application/json",
+        "User-Agent": "Africa 118"
+        }
 
     response = requests.get(url, headers=headers, auth=auth)
 
-    print(response.json(), 'The Response')
     json_response = response.json()
     return json_response['url']

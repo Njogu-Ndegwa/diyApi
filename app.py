@@ -5,7 +5,6 @@ from api.route.home import home_api
 from api.route.authController.login import login_api
 from api.route.authController.signup import signup_api
 from api.route.diyController.five_step_process import five_step_process_api
-from api.route.diyController.get_templates import get_templates_api
 from api.route.diyController.update_themes import update_theme_api
 from api.route.test import test_api
 from api.route.authController.delete import delete_api
@@ -19,8 +18,11 @@ from api.route.diyController.getSite import get_sites_api
 from api.route.diyController.publishApi import publish_site_api
 from api.route.emailController.finance_email import send_mail_finance_api
 from api.route.diyController.hire_proffessional import hire_professional_api
-
-
+# from api.route.emailController.reset_password_email import send_reset_password_email_api
+from api.route.authController.reset_password import reset_password_api
+from api.route.authController.confirm_verification_code import confirm_verification_code_api
+from api.route.authController.change_password import change_password_api
+from api.route.authController.confirm_email import confirmAccount_api
 def create_app():
     app = Flask(__name__)
 
@@ -40,7 +42,6 @@ def create_app():
     app.register_blueprint(login_api, url_prefix='/api')
     app.register_blueprint(signup_api, url_prefix='/api')
     app.register_blueprint(five_step_process_api, url_prefix='/api')
-    app.register_blueprint(get_templates_api, url_prefix='/api')
     app.register_blueprint(update_theme_api, url_prefix='/api')
     app.register_blueprint(test_api, url_prefix='/api')
     app.register_blueprint(delete_api, url_prefix='/api')
@@ -54,6 +55,11 @@ def create_app():
     app.register_blueprint(publish_site_api, url_prefix='/api')
     app.register_blueprint(send_mail_finance_api, url_prefix='/api')
     app.register_blueprint(hire_professional_api, url_prefix='/api')
+    # app.register_blueprint(send_reset_password_email_api, url_prefix='/api')
+    app.register_blueprint(reset_password_api, url_prefix='/api')
+    app.register_blueprint(confirm_verification_code_api, url_prefix='/api')
+    app.register_blueprint(change_password_api, url_prefix='/api')
+    app.register_blueprint(confirmAccount_api, url_prefix='/api')
 
     return app
 
