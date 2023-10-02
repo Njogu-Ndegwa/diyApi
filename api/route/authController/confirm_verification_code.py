@@ -51,12 +51,13 @@ def confirm_verification_code():
     try:
         conn = MySQLConnection(mysql_host, mysql_user, mysql_password, mysql_database)
         try:
-            # query_string = '''
-            #       DELETE FROM users WHERE email = %s
-            #                    '''
-            # param = (email, six_digit_code)
-            # data = conn.query(query_string, param)
-            stored_code = verification_code
+            query_string = '''
+                  SELECT verification_code FROM users WHERE email = %s
+                               '''
+            param = (email,)
+            data = conn.query(query_string, param)
+
+            stored_code = data[0][0]
             if verification_code == stored_code:
                 data = {
                     'message':'success'

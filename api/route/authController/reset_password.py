@@ -52,11 +52,15 @@ def reset_password():
     try:
         conn = MySQLConnection(mysql_host, mysql_user, mysql_password, mysql_database)
         try:
-            # query_string = '''
-            #       DELETE FROM users WHERE email = %s
-            #                    '''
-            # param = (email, six_digit_code)
-            # data = conn.query(query_string, param)
+            query_string = '''
+UPDATE users
+SET 
+    verification_code =  %s
+WHERE
+    email = %s
+                               '''
+            param = (six_digit_code, email)
+            data = conn.query(query_string, param)
             send_reset_password_email(email, six_digit_code)
             data = {
                 'message':'success'

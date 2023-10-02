@@ -51,11 +51,11 @@ def change_password():
     """
     #query_param = request.args.get('query_string', default='', type=str)
     email = request.json.get('email')
-    password1 = request.json.get('password1')
-    password2 = request.json.get('password2')
+    password = request.json.get('password1')
+    hashed_password = generate_password_hash(
+        password, method='sha256')
 
 
-    print(email, password1, password2, '-----58----')
 
     mysql_host =  os.environ.get('DB_HOST')
     mysql_user = os.environ.get('DB_USER')
@@ -66,12 +66,16 @@ def change_password():
     try:
         conn = MySQLConnection(mysql_host, mysql_user, mysql_password, mysql_database)
         try:
-            # query_string = '''
-            #       DELETE FROM users WHERE email = %s
-            #                    '''
-            # param = (email, six_digit_code)
-            # data = conn.query(query_string, param)
-            
+            query_string = '''
+                 UPDATE users
+SET password = %s
+WHERE email = %s
+
+
+                               '''
+            param = (hashed_password, email)
+            data = conn.query(query_string, param)
+            print(data, 'The Change Password Result')
             data = {
                 'message':'success'
             }

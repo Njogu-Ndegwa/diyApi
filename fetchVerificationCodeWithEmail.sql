@@ -1,0 +1,1 @@
+SELECT verification_code FROM users WHERE email = %s

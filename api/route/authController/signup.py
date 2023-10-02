@@ -96,7 +96,6 @@ WHERE email = %s;
                 )
                 print(token, 'The token')
 
-                # decoded_jwt = str(token.decode('utf-8'))
                 decoded_jwt = str(token)
 
                 hashed_password = str(hashed_password)
