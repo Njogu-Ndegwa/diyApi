@@ -23,6 +23,7 @@ from api.route.authController.reset_password import reset_password_api
 from api.route.authController.confirm_verification_code import confirm_verification_code_api
 from api.route.authController.change_password import change_password_api
 from api.route.authController.confirm_email import confirmAccount_api
+from api.route.authController.profile import profile_api
 def create_app():
     app = Flask(__name__)
 
@@ -60,6 +61,7 @@ def create_app():
     app.register_blueprint(confirm_verification_code_api, url_prefix='/api')
     app.register_blueprint(change_password_api, url_prefix='/api')
     app.register_blueprint(confirmAccount_api, url_prefix='/api')
+    app.register_blueprint(profile_api, url_prefix='/api')
 
     return app
 

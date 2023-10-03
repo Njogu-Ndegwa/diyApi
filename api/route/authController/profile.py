@@ -11,14 +11,16 @@ from werkzeug.security import check_password_hash, generate_password_hash
 # import quickemailverification
 import mysql.connector
 from api.route.configController.database import MySQLConnection
-
+import base64
+import datetime
+import uuid
 
 BASE_PATH = Path(__file__).resolve().parent.parent.parent.parent
 load_dotenv(join(BASE_PATH, '.env'))
 
 profile_api = Blueprint('profile_api', __name__)
 
-@profile_api.route('/user-profile', methods=['GET'])
+@profile_api.route('/user-profile', methods=['POST'])
 
 def profile():
     """
@@ -69,13 +71,29 @@ def profile():
         description: A user object based on login params
     """
     #query_param = request.args.get('query_string', default='', type=str)
-    name = request.json.get('name')
+    first_name = request.json.get('first_name')
+    last_name = request.json.get('last_name')
     email_address = request.json.get('email_address')
     photo = request.json.get('photo')
     business_name = request.json.get('business_name')
     business_email = request.json.get('business_email')
     business_phone_number = request.json.get('business_phone_number')
+    phone_number = request.json.get('phone_number')
+    user_id = request.json.get('user_id')
+    full_name = first_name + ' ' + last_name
+    binary_data = base64.b64decode(photo)
+    print(binary_data, 'Photo-----82-----')
+    upload_folder = 'uploads'
+    if not os.path.exists(upload_folder):
+        os.makedirs(upload_folder)
+    
+    timestamp = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
+    unique_id = str(uuid.uuid4())[:8]  # Use the first 8 characters of the UUID
+    filename = os.path.join(upload_folder, f'{timestamp}_{unique_id}.png')
 
+    # Save the binary data as an image file
+    with open(filename, 'wb') as f:
+        f.write(binary_data)
     mysql_host =  os.environ.get('DB_HOST')
     mysql_user = os.environ.get('DB_USER')
     mysql_password = os.environ.get('DB_PASSWORD')
@@ -86,11 +104,21 @@ def profile():
         conn = MySQLConnection(mysql_host, mysql_user, mysql_password, mysql_database)
         try:
             query_string = '''
-                  DELETE FROM users WHERE email = %s
+UPDATE users
+SET 
+    full_name = %s,
+    email = %s,
+    phone_number = %s,
+    business_email = %s,
+    business_phone_number = %s,
+    company_name = %s,
+    profile_url = %s
+WHERE
+    user_id = %s
                                '''
-            param = (email,)
+            param = (full_name, email_address, phone_number, business_email, business_phone_number, business_name, photo, user_id)
             data = conn.query(query_string, param)
-            print(data, 'Delete User')
+            print(data, 'Update User Profile')
 
         except Exception as e:
             data = {'message': str(e)}
