@@ -11,7 +11,7 @@ from passlib.apps import custom_app_context as pwd_context
 from werkzeug.security import check_password_hash, generate_password_hash
 # import quickemailverification
 import mysql.connector
-from api.route.emailController.hire_professional_email import hire_proffesional_email
+from api.route.emailController.hire_professional_email import MailHandlerClass
 from api.route.emailController.hire_professional_client_email import hire_proffesional_client_email
 
 BASE_PATH = Path(__file__).resolve().parent.parent.parent.parent
@@ -38,7 +38,7 @@ def hire_proffesional():
         'assistance_type': assistance_type,
         'other': other
     }
-    response = hire_proffesional_email(full_name, email_address, phone_number, communication_mode, other, assistance_type)
+    response = MailHandlerClass.hire_proffesional_email(full_name, email_address, phone_number, communication_mode, other, assistance_type)
     print(response)
     hire_proffesional_client_email(email_address)
     return jsonify(data)

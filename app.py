@@ -25,6 +25,8 @@ from api.route.authController.change_password import change_password_api
 from api.route.authController.confirm_email import confirmAccount_api
 from api.route.authController.profile import profile_api
 from api.route.authController.uploads import serve_uploads_api
+from api.route.authController.getProfile import get_profile_api
+
 def create_app():
     app = Flask(__name__)
 
@@ -64,7 +66,7 @@ def create_app():
     app.register_blueprint(confirmAccount_api, url_prefix='/api')
     app.register_blueprint(profile_api, url_prefix='/api')
     app.register_blueprint(serve_uploads_api, url_prefix='/api')
-
+    app.register_blueprint(get_profile_api, url_prefix='/api')
     return app
 
 

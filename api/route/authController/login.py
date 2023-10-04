@@ -89,7 +89,6 @@ def login():
                 
                 param = (email, hashed_password)
                 data = conn.query(query_string, param)
-                print(data, 'Data--92---')
                 formatted_result = []
                 for row in data:
                     data = {

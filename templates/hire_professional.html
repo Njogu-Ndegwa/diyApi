@@ -1,22 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Outfit:wght@100;200;300;400;500;600;700&family=Poppins:wght@400;500;700&family=Telex&display=swap"
+        rel="stylesheet">
     <title>Document</title>
 </head>
-<body>
-    <p>Full Name: {{full_name}}</p>
 
-    <p>Email Addres: {{email_address}}</p>
+<body style="
+background-color: #F8FAFC;
+width: 640px;
+height: 750px;
+border: 1px solid rgba(154, 154, 154, 0);
+border-radius: 5px;
+">
+    <div class="header" style="
+    width: 565px;
+    margin-left: 38px;
+    height: 70px;
+    margin-top: 3rem;
+    ">
+        <p
+        style="
+color: #121A26;
+font-family: Arial;
+font-size: 18px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+margin-top: 50px;
+        "
+        >
+        <img style="width: 16px; height: 16px;" src="https://smart.infomoby.com/assets/favicon.png" alt="logo"/>
+        Infomoby Business 
 
-    <p>Phone Number: {{phone_number}}</p>
+ </p>
 
-    <p>Communication Mode: {{communication_mode}}</p>
+    </div>
+    <div class="content-container" style="            
+    width: 640px;
+    ">
+        <div class="content" style="
+        margin-left: 38px;
+        width: 565px;
+        background-color: white;
+        border-radius: 5px;
+        height: 400px;">
+            <div style="height: 1.1rem;"></div>
 
-    <p>Assistance Type: {{assistance_type}}</p>
+            <div style="
+                margin-left: 6rem;
+                width: 371px;
+                margin-bottom: 1.5rem;">
+                <h1 style="
+                margin-top: 1.5rem;
+                color:  #384860;
+                text-align: center;
+                font-family: Arial;
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 150%;
+                letter-spacing: 0.2px;">New Client Request</h1>
+            </div>
 
-    <p> Others: {{others}}</p>
+            <div style="
+                width: 485px;
+                margin-left: 2rem;">
+                <p style="
+                color:  #384860;
+                font-family: Arial;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 25.6px;
+                letter-spacing: 0.2px;">
+                    You have a new inquiry through the website. Here are the details:</p>
 
+                <!-- <ul> -->
+                    <p style="margin-bottom: 15px">
+                        <span>
+                            <img style="width: 16px; height: 16px; margin-right: 3px;" src="https://diy.infomoby.com/assets/checkbox.png"/>
+                        </span>          
+                <span style="
+                        color: #384860;
+                        font-family: Arial;
+                        font-size: 15px;
+                        font-style: normal;
+                        font-weight: 700;
+                        letter-spacing: 0.2px;
+                        ">Full Name: </span><span style="
+                    color: #384860;
+                    font-family: Arial;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    letter-spacing: 0.2px;"
+                >{{full_name}}</span></p>
+                    <p style="margin-bottom: 15px">
+                        <span>
+                            <img style="width: 16px; height: 16px; margin-right: 3px;" src="https://diy.infomoby.com/assets/checkbox.png"/>
+                        </span>   
+                    <span style="
+                                            color: #384860;
+                                            font-family: Arial;
+                                            font-size: 15px;
+                                            font-style: normal;
+                                            font-weight: 700;
+                                            letter-spacing: 0.2px;
+                                                                    ">Email Address: </span><span style="
+                                            color: #384860;
+                                            font-family: Arial;
+                                            font-size: 14px;
+                                            font-style: normal;
+                                            font-weight: 400;
+                                            letter-spacing: 0.2px;">{{email_address}}</span></p>
+                    <p style="margin-bottom: 15px">
+                        <span>
+                            <img style="width: 16px; height: 16px; margin-right: 3px;" src="https://diy.infomoby.com/assets/checkbox.png"/>
+                        </span>   
+                    <span style="
+                                            color: #384860;
+                                            font-family: Arial;
+                                            font-size: 15px;
+                                            font-style: normal;
+                                            font-weight: 700;
+                                            letter-spacing: 0.2px;
+                                                                    ">Phone Number: </span><span style="
+                                            color: #384860;
+                                            font-family: Arial;
+                                            font-size: 14px;
+                                            font-style: normal;
+                                            font-weight: 400;
+                                            letter-spacing: 0.2px;">{{phone_number}}</span></p>
+                    <p style="margin-bottom: 15px">
+                        <span>
+                            <img style="width: 16px; height: 16px; margin-right: 3px;" src="https://diy.infomoby.com/assets/checkbox.png"/>
+                        </span>   
+                    <span style="
+                                            color: #384860;
+                                            font-family: Arial;
+                                            font-size: 15px;
+                                            font-style: normal;
+                                            font-weight: 700;
+                                            letter-spacing: 0.2px;
+                                                                    ">Commnunication Mode: </span><span style="
+                                            color: #384860;
+                                            font-family: Arial;
+                                            font-size: 14px;
+                                            font-style: normal;
+                                            font-weight: 400;
+                                            letter-spacing: 0.2px;">{{communication_mode}}</span></p>
+                    <p style="margin-bottom: 15px">
+                        <span>
+                            <img style="width: 16px; height: 16px; margin-right: 3px;" src="https://diy.infomoby.com/assets/checkbox.png"/>
+                        </span>   
+                    <span style="
+                                            color: #384860;
+                                            font-family: Arial;
+                                            font-size: 15px;
+                                            font-style: normal;
+                                            font-weight: 700;
+                                            letter-spacing: 0.2px;
+                                                                    ">Service Needed: </span><span style="
+                                            color: #384860;
+                                            font-family: Arial;
+                                            font-size: 14px;
+                                            font-style: normal;
+                                            font-weight: 400;
+                                            letter-spacing: 0.2px;">{{assistance_type}}</span></p>
+                                                                <p style="margin-bottom: 15px">
+                                                                    <span>
+                                                                        <img style="width: 16px; height: 16px; margin-right: 3px;" src="https://diy.infomoby.com/assets/checkbox.png"/>
+                                                                    </span>   
+                                                                <span style="
+                                                                                        color: #384860;
+                                                                                        font-family: Arial;
+                                                                                        font-size: 15px;
+                                                                                        font-style: normal;
+                                                                                        font-weight: 700;
+                                                                                        letter-spacing: 0.2px;
+                                                                                                                ">Additional Info: </span><span style="
+                                                                                        color: #384860;
+                                                                                        font-family: Arial;
+                                                                                        font-size: 14px;
+                                                                                        font-style: normal;
+                                                                                        font-weight: 400;
+                                                                                        letter-spacing: 0.2px;">{{others}}</span></p>
+
+
+                <!-- </ul> -->
+            </div>
+        </div>
+    </div>
+    <div style="
+    height: 20vh;
+    width: 544px;
+    margin-left: 3rem;
+    margin-top: 2rem;
+    ">
+    <p
+    style="
+color:  #202B3C;
+font-family: Arial;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 150%;
+letter-spacing: 0.2px;
+    "
+    >Questions or faq? Contact us at <span style="
+    color: #04A9F4;
+    ">info@africa118.com.</span> </p>
+        
+        <p
+        style="
+color:  #202B3C;
+font-family: Arial;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 150%;
+letter-spacing: 0.2px;
+        "
+        >Rainbow towers, Muthithi Road
+        <br>
+        &copy; 2023 Africa 118
+    </p>
+    </div>
 </body>
+
 </html>
