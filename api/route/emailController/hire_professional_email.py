@@ -40,7 +40,7 @@ class MailHandlerClass:
           # "MAIL_USERNAME": 'markgichohi24@',
           # "MAIL_PASSWORD": 'RNRFUgJwZPeJBAbrX3XwAA'
       }
-      emailto = email_address
+      emailto = "tbaraza@africa118.com"
 
       app.config.update(mail_settings)
 
