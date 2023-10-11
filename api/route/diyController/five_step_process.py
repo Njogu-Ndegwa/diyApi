@@ -34,6 +34,11 @@ def diyapis():
     api_password = os.environ.get('DUDA_PASSWORD')
     auth=(api_username, api_password)
     site_name = create_website(auth, business_name, business_phone, business_email)
+    site_id_update_response = update_site_planid(auth, site_name)
+    if site_id_update_response == 200:
+        pass
+    else:
+        return make_response('There was a problem creating the site', 400)
     create_user_status_code = create_user(auth, person_object)
     if create_user_status_code == 204:
         assign_permissions_reponse_code = assign_permissions(auth, account_name, site_name)
@@ -71,9 +76,22 @@ def create_website(auth, business_name, business_phone, business_email):
     }
 
     response = requests.post(url, headers=headers, json=data, auth=auth)
-    print(response)
     json_response = response.json()
     return json_response['site_name']
+
+
+def update_site_planid(auth, site_name):
+    url = f"{duda_endpoint}/sites/multiscreen/{site_name}/plan/800"
+    headers = {
+        "accept": "application/json",
+        "User-Agent": "Africa 118"
+        }
+    response = requests.post(url, headers=headers, auth=auth)
+    print(response.status_code, "-Status Code of the Response---90--")
+    if response.status_code == 204:
+        return 200
+    else:
+        return 500
 
 
 def create_user(auth, person_object):
@@ -96,7 +114,6 @@ def create_user(auth, person_object):
     }
 
     response = requests.post(url, json=payload, headers=headers, auth=auth)
-    print(response, 'Response---96')
     return response.status_code
 
 def assign_permissions(auth, account_name, site_name):
@@ -110,7 +127,6 @@ def assign_permissions(auth, account_name, site_name):
 
     response = requests.post(url, headers=headers, json=payload, auth=auth)
     assign_permissions_reponse_code = response.status_code
-
     return assign_permissions_reponse_code
 
 
