@@ -95,7 +95,7 @@ def profile():
       timestamp = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
       unique_id = str(uuid.uuid4())[:8]  # Use the first 8 characters of the UUID
       filename = os.path.join(upload_folder, f'{timestamp}_{unique_id}.png')
-      photo_url = f"https://diy.infomoby.com/api/uploads/{timestamp}_{unique_id}.png"
+      photo_url = f"https://diy-api.infomoby.com/api/uploads/{timestamp}_{unique_id}.png"
       with open(filename, 'wb') as f:
         f.write(binary_data)
     else:
