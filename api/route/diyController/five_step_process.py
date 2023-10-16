@@ -136,7 +136,7 @@ def generate_sso_link(auth, account_name, site_name):
         "accept": "application/json",
         "User-Agent": "Africa 118"
         }
-
+    print(url,  '----139----')
     response = requests.get(url, headers=headers, auth=auth)
 
     json_response = response.json()

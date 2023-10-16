@@ -38,7 +38,7 @@ def create_token():
         <Services>
             <Service>
                 <ServiceType>5525</ServiceType>
-                <ServiceDescription>Flight from Nairobi to Diani</ServiceDescription>
+                <ServiceDescription>Payment for DIY</ServiceDescription>
                 <ServiceDate>2013/12/20 19:00</ServiceDate>
             </Service>
         </Services>
