@@ -63,9 +63,7 @@ def verify_payment():
             return jsonify(data)
         else:
             data = {
-
-                'status': 'failed'
-                
+                'status': 'failed' 
             }
             return jsonify(data)
     else:

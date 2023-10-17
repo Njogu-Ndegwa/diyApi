@@ -24,6 +24,8 @@ def create_token():
     }
 
     current_date = datetime.now()
+    formatted_date_time = current_date.strftime('%Y/%m/%d %H:%M')
+    print(formatted_date_time, 'The Formated time')
     xml_data = f'''<?xml version='1.0' encoding='utf-8'?>
     <API3G>
         <CompanyToken>02900042-8063-4C63-9B45-EFA4333C73EF</CompanyToken>
@@ -41,7 +43,7 @@ def create_token():
             <Service>
                 <ServiceType>81237</ServiceType>
                 <ServiceDescription>Payment for DIY</ServiceDescription>
-                <ServiceDate>{current_date}</ServiceDate>
+                <ServiceDate>{formatted_date_time}</ServiceDate>
             </Service>
         </Services>
     </API3G>
