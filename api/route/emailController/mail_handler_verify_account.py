@@ -42,7 +42,7 @@ class MailHandlerClass:
       app.config.update(mail_settings)
       confirm_url = url_for('confirmAccount_api.confirmAccount', token=token, _external=True, _scheme='https')
 
-      subject = "Welcome to DIY Infomoby" 
+      subject = "Please Confirm Your Email Address" 
       msg = Message(subject, sender = app.config.get('MAIL_USERNAME'), recipients = [recepientEmail])
       msg.html=render_template("verify_user_account.html",confirm_url = confirm_url,name=recipientName)
       

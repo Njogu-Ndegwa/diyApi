@@ -22,7 +22,6 @@ hire_professional_api = Blueprint('hire_professional_api', __name__)
 @hire_professional_api.route('/hire-professional', methods=['POST'])
 
 def hire_proffesional():
-    print('Hire Proffesional Called')
     full_name = request.json.get('full_name')
     email_address = request.json.get('email_address')
     phone_number = request.json.get('phone_number')

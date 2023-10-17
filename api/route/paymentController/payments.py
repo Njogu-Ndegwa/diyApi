@@ -42,7 +42,7 @@ def create_token():
         <Services>
             <Service>
                 <ServiceType>81237</ServiceType>
-                <ServiceDescription>Payment for DIY</ServiceDescription>
+                <ServiceDescription>Payment for Infomoby DIY Website</ServiceDescription>
                 <ServiceDate>{formatted_date_time}</ServiceDate>
             </Service>
         </Services>

@@ -44,7 +44,7 @@ def hire_proffesional_client_email( email_address):
 
     app.config.update(mail_settings)
 
-    subject = "Hire Proffessional" 
+    subject = "Hire Professional"
     msg = Message(subject, sender = app.config.get('MAIL_USERNAME'), recipients = [emailto])
     msg.html=render_template("hire_professional_client.html")
     
