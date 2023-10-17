@@ -24,7 +24,7 @@ def create_token():
 
     xml_data = f'''<?xml version='1.0' encoding='utf-8'?>
     <API3G>
-        <CompanyToken>8D3DA73D-9D7F-4E09-96D4-3D44E7A83EA3</CompanyToken>
+        <CompanyToken>02900042-8063-4C63-9B45-EFA4333C73EF</CompanyToken>
         <Request>createToken</Request>
         <Transaction>
             <PaymentAmount>{payment_amount}</PaymentAmount>
@@ -37,7 +37,7 @@ def create_token():
         </Transaction>
         <Services>
             <Service>
-                <ServiceType>5525</ServiceType>
+                <ServiceType>81237</ServiceType>
                 <ServiceDescription>Payment for DIY</ServiceDescription>
                 <ServiceDate>2013/12/20 19:00</ServiceDate>
             </Service>

@@ -23,7 +23,7 @@ def verify_payment():
     xml_data = f'''
 <?xml version="1.0" encoding="utf-8"?>
 <API3G>
-  <CompanyToken>8D3DA73D-9D7F-4E09-96D4-3D44E7A83EA3</CompanyToken>
+  <CompanyToken>02900042-8063-4C63-9B45-EFA4333C73EF</CompanyToken>
   <Request>verifyToken</Request>
   <TransactionToken>{transaction_token}</TransactionToken>
 </API3G>
