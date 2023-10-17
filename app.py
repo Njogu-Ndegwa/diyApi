@@ -66,7 +66,6 @@ def create_app():
     app.register_blueprint(resend_verification_email_api, url_prefix='/api')
     return app
 
-
 if __name__ == '__main__':
     from argparse import ArgumentParser
 

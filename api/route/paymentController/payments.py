@@ -4,6 +4,7 @@ from flask import Blueprint, request, jsonify
 from dotenv import load_dotenv
 import requests
 import xml.etree.ElementTree as ET
+from datetime import datetime
 
 BASE_PATH = Path(__file__).resolve().parent.parent.parent.parent
 load_dotenv(join(BASE_PATH, '.env'))
@@ -22,6 +23,7 @@ def create_token():
         "Accept": "application/xml"
     }
 
+    current_date = datetime.now()
     xml_data = f'''<?xml version='1.0' encoding='utf-8'?>
     <API3G>
         <CompanyToken>02900042-8063-4C63-9B45-EFA4333C73EF</CompanyToken>
@@ -39,7 +41,7 @@ def create_token():
             <Service>
                 <ServiceType>81237</ServiceType>
                 <ServiceDescription>Payment for DIY</ServiceDescription>
-                <ServiceDate>2013/12/20 19:00</ServiceDate>
+                <ServiceDate>{current_date}</ServiceDate>
             </Service>
         </Services>
     </API3G>
