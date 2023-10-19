@@ -38,7 +38,9 @@ def publish_site():
     if response.status_code == 204:
         update_url = f"{duda_endpoint}/sites/multiscreen/update/{site_name}"
         response = requests.post(update_url, json=payload, headers=headers, auth=(api_username, api_password))
-
+        print('---------------------')
+        print(response, flush=True)
+        print('---------------------')
         if response.status_code == 204:
             data = {
                 'message': 'success'

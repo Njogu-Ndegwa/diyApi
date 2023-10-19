@@ -41,6 +41,7 @@ def verify_payment():
     transaction_amount_request = root.find(".//TransactionFinalAmount")
     transaction_status_request = root.find(".//Result")
 
+    print(mobile_payment_request, '------------44-----------')
     # print(transaction_status, 'Transaction Status')
     if mobile_payment_request is not None:
         mobile_payment_status = mobile_payment_request.text
