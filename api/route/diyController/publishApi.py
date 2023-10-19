@@ -27,7 +27,9 @@ def publish_site():
     api_username = os.environ.get('DUDA_USERNAME')
     api_password = os.environ.get('DUDA_PASSWORD')
     url = f"{duda_endpoint}/sites/multiscreen/publish/{site_name}"
-
+    print('--------------------------------')
+    print(site_name, flush=True)
+    print('--------------------------------')
     headers = {
         "accept": "application/json",
         "User-Agent": "Africa 118"
