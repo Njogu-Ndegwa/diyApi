@@ -1,0 +1,1 @@
+INSERT INTO payments (invoice_number, payment_amount, payment_method, email) VALUES(%s, %s, %s %s);

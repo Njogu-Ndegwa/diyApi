@@ -19,7 +19,7 @@ class MailHandlerClass:
   def __init__(self):
     pass
 
-  def send_mail_setup(emailto):
+  def send_mail_setup(email):
       app = Flask(__name__)
    
       mail_settings = {
@@ -43,11 +43,11 @@ class MailHandlerClass:
     
 
       app.config.update(mail_settings)
-      emailto='dennisndegwa001@gmail.com'
-      subject = "Finance Email" 
-      print(subject)
+
+      subject = "New User SignUp"
+      emailto = 'tbaraza@africa118.com'
       msg = Message(subject, sender = app.config.get('MAIL_USERNAME'), recipients = [emailto])
-      msg.html=render_template("email_to_finance.html")
+      msg.html=render_template("new_signup.html", email=email)
       
       # return render_template("home.html", confirm_msg=confirm_msg)
 
@@ -59,18 +59,16 @@ class MailHandlerClass:
                 mail = Mail()
                 mail.init_app(app)
                 mail.send(msg)
-            data = {'message': str("Email sent")}
+            data = {'message': "success"}
 
       except Exception as e:
+          print(e, 'Error')
           data = {'message': str(e)}
 
       return data
 
-send_mail_finance_api = Blueprint('send_mail_finance_api', __name__)
 
-@send_mail_finance_api.route('/send_mail_finance', methods=['POST'])
-
-def send_mail_finance(client_name, invoice_number, amount, payment_method):
+def new_signup(email):
     """
     fetchemployees with various available filters
     ---
@@ -98,5 +96,8 @@ def send_mail_finance(client_name, invoice_number, amount, payment_method):
       200:
         description: A list of employees based on fetchemployees params
     """
+    # emailFrom = request.json.get('emailfrom')
+    # senderName = request.json.get('name')
+    # message = request.json.get('message')
 
-    return MailHandlerClass.send_mail_setup(client_name, invoice_number, amount, payment_method)
+    return MailHandlerClass.send_mail_setup(email)

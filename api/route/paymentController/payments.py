@@ -6,6 +6,7 @@ import requests
 import xml.etree.ElementTree as ET
 from datetime import datetime
 
+
 BASE_PATH = Path(__file__).resolve().parent.parent.parent.parent
 load_dotenv(join(BASE_PATH, '.env'))
 
@@ -15,7 +16,8 @@ payment_api = Blueprint('payment_api', __name__)
 
 def create_token():
 
-    payment_amount = request.json.get('amount')
+    # payment_amount = request.json.get('amount')
+    payment_amount = 1
     url = "https://secure.3gdirectpay.com/API/v6/"
     headers = {
         "Content-Type": "application/xml",

@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 from passlib.apps import custom_app_context as pwd_context
 from api.route.authController.acount_verification_token import generate_confirmation_token
 from api.route.emailController.mail_handler_verify_account import send_account_verification_email
+from api.route.emailController.new_sign_up import new_signup
 # import quickemailverification
 import mysql.connector
 from api.route.configController.database import MySQLConnection
@@ -110,7 +111,10 @@ WHERE email = %s;
                 token = generate_confirmation_token(email)
                 emailSend = send_account_verification_email(
                     token, email, full_name)
-                print(emailSend, 'Email...')
+                print(emailSend, '-----114----')
+                new_response = new_signup(email)
+                print('------116------')
+                print(new_response, 'New Response Email....')
                 data = {
                     'success': 'success'
                 }

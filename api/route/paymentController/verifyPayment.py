@@ -4,6 +4,8 @@ from flask import Flask, Blueprint, request, jsonify
 from dotenv import load_dotenv
 import requests
 import xml.etree.ElementTree as ET
+from api.route.paymentController.save_payment_record import save_payment_record
+
 BASE_PATH = Path(__file__).resolve().parent.parent.parent.parent
 load_dotenv(join(BASE_PATH, '.env'))
 
@@ -12,7 +14,7 @@ verify_payment_api = Blueprint('verify_payment_api', __name__)
 @verify_payment_api.route('/verify-payment', methods=['POST'])
 
 def verify_payment():
-
+    email = request.json.get('email')
     transaction_token = request.json.get('transaction_token')
     url = "https://secure.3gdirectpay.com/API/v6/"
     headers = {
@@ -40,8 +42,11 @@ def verify_payment():
     mobile_payment_request = root.find(".//MobilePaymentRequest")
     transaction_amount_request = root.find(".//TransactionFinalAmount")
     transaction_status_request = root.find(".//Result")
-
-    print(mobile_payment_request, '------------44-----------')
+    customer_name_request = root.find(".//CustomerName")
+    if customer_name_request is not None:
+        customer_name = customer_name_request.text
+    else:
+        customer_name = ''
     # print(transaction_status, 'Transaction Status')
     if mobile_payment_request is not None:
         mobile_payment_status = mobile_payment_request.text
@@ -50,6 +55,7 @@ def verify_payment():
         print(transaction_status, 'Status')
         print(mobile_payment_status, transaction_amount, '-------46-----', flush=True)
         if mobile_payment_status == 'Paid':
+            save_payment_record(transaction_amount, 'MPESA', email, customer_name)
             data = {
                 'status': 'paid',
                 'amount': transaction_amount
@@ -57,6 +63,7 @@ def verify_payment():
             return jsonify(data)
 
         elif transaction_status == '000':
+            save_payment_record(transaction_amount, 'CARD', email, customer_name)
             data = {
                 'status': 'paid',
                 'amount': transaction_amount
@@ -69,3 +76,4 @@ def verify_payment():
             return jsonify(data)
     else:
         print("Mobile Payment Request element not found.")
+
