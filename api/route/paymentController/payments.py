@@ -15,8 +15,7 @@ payment_api = Blueprint('payment_api', __name__)
 
 def create_token():
 
-    # payment_amount = request.json.get('amount')
-    payment_amount = 1
+    payment_amount = request.json.get('amount')
     url = "https://secure.3gdirectpay.com/API/v6/"
     headers = {
         "Content-Type": "application/xml",
