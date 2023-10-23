@@ -45,7 +45,10 @@ def save_payment_record(payment_amount, payment_method, email, customer_name):
     #query_param = request.args.get('query_string', default='', type=str)
 
     invoice_number = generate_ivoice()
-    mail_response = send_mail_finance(customer_name, invoice_number, payment_amount, payment_method)
+    try:
+        mail_response = send_mail_finance(customer_name, invoice_number, payment_amount, payment_method)
+    except Exception as e:
+        pass
     print(mail_response, 'Email Response.....49....')
     data = {
         "message": "success"

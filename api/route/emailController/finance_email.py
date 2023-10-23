@@ -19,7 +19,7 @@ class MailHandlerClass:
   def __init__(self):
     pass
 
-  def send_mail_setup(emailto):
+  def send_mail_setup(client_name, invoice_number, amount, payment_method):
       app = Flask(__name__)
    
       mail_settings = {
@@ -47,7 +47,7 @@ class MailHandlerClass:
       subject = "Finance Email" 
       print(subject)
       msg = Message(subject, sender = app.config.get('MAIL_USERNAME'), recipients = [emailto])
-      msg.html=render_template("email_to_finance.html")
+      msg.html=render_template("email_to_finance.html", client_name=client_name, invoice_number=invoice_number, payment_method=payment_method, payment_amount=amount)
       
       # return render_template("home.html", confirm_msg=confirm_msg)
 
