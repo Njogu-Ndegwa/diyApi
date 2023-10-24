@@ -43,6 +43,8 @@ def verify_payment():
     transaction_amount_request = root.find(".//TransactionFinalAmount")
     transaction_status_request = root.find(".//Result")
     customer_name_request = root.find(".//CustomerName")
+
+    print(customer_name_request, 'Name Request')
     if customer_name_request is not None:
         customer_name = customer_name_request.text
     else:
@@ -55,6 +57,7 @@ def verify_payment():
         print(transaction_status, 'Status')
         print(mobile_payment_status, transaction_amount, '-------46-----', flush=True)
         if mobile_payment_status == 'Paid':
+            print(customer_name, 'Customer Name')
             save_payment_record(transaction_amount, 'MPESA', email, customer_name)
             data = {
                 'status': 'paid',
