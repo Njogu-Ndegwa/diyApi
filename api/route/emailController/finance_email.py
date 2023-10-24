@@ -43,7 +43,7 @@ class MailHandlerClass:
     
 
       app.config.update(mail_settings)
-      emailto='dennisndegwa001@gmail.com'
+      emailto='finance@africa118.com'
       subject = "Finance Email" 
       print(subject)
       msg = Message(subject, sender = app.config.get('MAIL_USERNAME'), recipients = [emailto])
