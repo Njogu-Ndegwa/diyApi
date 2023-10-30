@@ -42,7 +42,6 @@ def save_payment_record(payment_amount, payment_method, email, customer_name):
       200:
         description: A user object based on login params
     """
-    #query_param = request.args.get('query_string', default='', type=str)
 
     invoice_number = generate_ivoice()
 
@@ -61,7 +60,7 @@ def save_payment_record(payment_amount, payment_method, email, customer_name):
             param = (invoice_number, payment_amount, payment_method, email)
             data = conn.query(query_string, param)
             send_mail_finance(customer_name, invoice_number, payment_amount, payment_method)
-            print(data, 'Delete User')
+
             data = {
                 'message': 'success'
             }

@@ -30,12 +30,7 @@ class MailHandlerClass:
             "MAIL_USERNAME": 'no-reply@africa118.com',
             "MAIL_PASSWORD": 'Resource2030'
             
-            # "MAIL_SERVER": 'smtp.mandrillapp.com',
-            # "MAIL_PORT": 587,
-            # "MAIL_USE_TLS": True,
-            # "MAIL_USE_SSL": False,
-            # "MAIL_USERNAME": 'markgichohi24@',
-            # "MAIL_PASSWORD": 'RNRFUgJwZPeJBAbrX3XwAA'
+
       }
     
 
@@ -45,11 +40,7 @@ class MailHandlerClass:
       subject = "Please Confirm Your Email Address" 
       msg = Message(subject, sender = app.config.get('MAIL_USERNAME'), recipients = [recepientEmail])
       msg.html=render_template("verify_user_account.html",confirm_url = confirm_url,name=recipientName)
-      
-      # return render_template("home.html", confirm_msg=confirm_msg)
 
-
-      # msg.body = emailContent
 
       try:
             with app.app_context():
@@ -57,12 +48,9 @@ class MailHandlerClass:
                 mail.init_app(app)
                 mail.send(msg)
             data = {'message': str("Email sent")}
-            print('Email Sent')
-            
             
 
       except Exception as e:
-          print(e, 'Error')
           data = {'message': str(e)}
 
       return data

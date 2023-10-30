@@ -50,8 +50,7 @@ def create_token():
     '''
 
     response = requests.post(url, headers=headers, data=xml_data)
-    print(response.status_code, '49---------------')
-    print(response.text, '50--------------')
+
     # Parse the XML response
     root = ET.fromstring(response.text)
 
@@ -69,7 +68,5 @@ def create_token():
             'error': 'error'
         }
 
-        # print(response.status_code)
-        # print(response.text)
     
     return jsonify(data)

@@ -33,12 +33,6 @@ class MailHandlerClass:
           
           
           
-          # "MAIL_SERVER": 'smtp.mandrillapp.com',
-          # "MAIL_PORT": 587,
-          # "MAIL_USE_TLS": True,
-          # "MAIL_USE_SSL": False,
-          # "MAIL_USERNAME": 'markgichohi24@',
-          # "MAIL_PASSWORD": 'RNRFUgJwZPeJBAbrX3XwAA'
       }
       emailto = "tbaraza@africa118.com"
 

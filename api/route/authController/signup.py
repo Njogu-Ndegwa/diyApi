@@ -51,9 +51,9 @@ def signup():
     # Database connection parameters
     full_name = request.json.get('full_name')
     email = request.json.get('email')
-    company = request.json.get('company', '')
+    company_name = request.json.get('company_name', '')
     address = request.json.get('address', '')
-    phone_number = request.json.get('phonenumber', '')
+    phone_number = request.json.get('phone_number', '')
     # password = request.json.get('password')
     hashed_password = generate_password_hash(
         request.json.get('password'), method='sha256')
@@ -102,9 +102,9 @@ WHERE email = %s;
                 hashed_password = str(hashed_password)
                 # print(hashed_password)
                 query_string = '''
-                              INSERT INTO users (full_name, email, password, token) VALUES(%s, %s, %s, %s);
+                              INSERT INTO users (full_name, email, password, token, company_name, phone_number) VALUES(%s, %s, %s, %s, %s, %s);
                               '''
-                param = (full_name, email, hashed_password, decoded_jwt)
+                param = (full_name, email, hashed_password, decoded_jwt, company_name, phone_number)
 
                 data = conn.query(query_string, param)
                 
@@ -112,7 +112,7 @@ WHERE email = %s;
                 emailSend = send_account_verification_email(
                     token, email, full_name)
                 print(emailSend, '-----114----')
-                new_response = new_signup(email)
+                new_response = new_signup(email, company_name, phone_number, full_name)
                 print('------116------')
                 print(new_response, 'New Response Email....')
                 data = {

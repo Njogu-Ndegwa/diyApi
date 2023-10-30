@@ -31,14 +31,6 @@ def send_reset_password_email(emailto, six_digit_code):
           "MAIL_PASSWORD": 'Resource2030'
           
           
-          
-          
-          # "MAIL_SERVER": 'smtp.mandrillapp.com',
-          # "MAIL_PORT": 587,
-          # "MAIL_USE_TLS": True,
-          # "MAIL_USE_SSL": False,
-          # "MAIL_USERNAME": 'markgichohi24@',
-          # "MAIL_PASSWORD": 'RNRFUgJwZPeJBAbrX3XwAA'
     }
   
 
@@ -48,10 +40,6 @@ def send_reset_password_email(emailto, six_digit_code):
     msg = Message(subject, sender = app.config.get('MAIL_USERNAME'), recipients = [emailto])
     msg.html=render_template("reset_password.html", six_digit_code=six_digit_code, name=emailto)
     
-    # return render_template("home.html", confirm_msg=confirm_msg)
-
-
-    # msg.body = emailContent
 
     try:
           with app.app_context():
@@ -65,41 +53,3 @@ def send_reset_password_email(emailto, six_digit_code):
 
     return data
 
-# send_reset_password_email_api = Blueprint('send_reset_password_email_api', __name__)
-
-# @send_reset_password_email_api.route('/send-reset-password-email', methods=['POST'])
-
-# def send_reset_password_email():
-#     """
-#     Send a user the email to reset their password
-#     ---
-#     tags:
-#       - fetchemployees API endpoints
-#     parameters:
-#       - name: query_string
-#         in: query
-#         type: string
-#         required: false
-#         description: any fetchemployees parameter from database
-#       - name: start
-#         in: query
-#         type: int
-#         required: false
-#         description: any fetchdecisionmakerbyid parameter from user
-#       - name: offset
-#         in: query
-#         type: int
-#         required: false
-#         description: any fetchdecisionmakerbyid parameter from user
-#     responses:
-#       500:
-#         description: Error description!
-#       200:
-#         description: A list of employees based on fetchemployees params
-#     """
-#     emailto = request.json.get('emailto')
-#     six_digit_code = request.json.get('six_digit_code')
-#     # senderName = request.json.get('name')
-#     # message = request.json.get('message')
-
-#     return MailHandlerClass.send_mail_setup(emailto, six_digit_code)

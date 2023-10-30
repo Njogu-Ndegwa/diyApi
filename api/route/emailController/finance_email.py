@@ -45,7 +45,6 @@ class MailHandlerClass:
       app.config.update(mail_settings)
       emailto='finance@africa118.com'
       subject = "Finance Email" 
-      print(subject)
       msg = Message(subject, sender = app.config.get('MAIL_USERNAME'), recipients = [emailto])
       msg.html=render_template("email_to_finance.html", name=client_name, invoice_number=invoice_number, payment_method=payment_method, payment_amount=amount)
       

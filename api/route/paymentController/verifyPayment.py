@@ -33,8 +33,7 @@ def verify_payment():
 
     response = requests.post(url, headers=headers, data=xml_data)
 
-    # print(response.status_code)
-    print(response.text)
+
     # Parse the XML content
 
     root = ET.fromstring(response.text)
@@ -53,14 +52,12 @@ def verify_payment():
     # print(transaction_status, 'Transaction Status')
 
     if mobile_payment_request is not None:
-        print('--------57---------')
         mobile_payment_status = mobile_payment_request.text
         transaction_amount = transaction_amount_request.text
         transaction_status = transaction_status_request.text
         
-        print('-------62------')
+
         if mobile_payment_status == 'Paid':
-            print(customer_name, 'Customer Name')
             save_payment_record(transaction_amount, 'MPESA', email, customer_name)
             data = {
                 'status': 'paid',

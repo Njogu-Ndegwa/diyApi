@@ -31,14 +31,6 @@ class MailHandlerClass:
             "MAIL_PASSWORD": 'Resource2030'
             
             
-            
-            
-            # "MAIL_SERVER": 'smtp.mandrillapp.com',
-            # "MAIL_PORT": 587,
-            # "MAIL_USE_TLS": True,
-            # "MAIL_USE_SSL": False,
-            # "MAIL_USERNAME": 'markgichohi24@',
-            # "MAIL_PASSWORD": 'RNRFUgJwZPeJBAbrX3XwAA'
       }
     
 
@@ -48,11 +40,7 @@ class MailHandlerClass:
       emailto = 'tbaraza@africa118.com'
       msg = Message(subject, sender = app.config.get('MAIL_USERNAME'), recipients = [emailto])
       msg.html=render_template("help_connect_domain_email.html", email=email)
-      
-      # return render_template("home.html", confirm_msg=confirm_msg)
 
-
-      # msg.body = emailContent
 
       try:
             with app.app_context():
@@ -99,8 +87,5 @@ def help_connect_domain():
         description: A list of employees based on fetchemployees params
     """
     email = request.json.get('email')
-    # emailFrom = request.json.get('emailfrom')
-    # senderName = request.json.get('name')
-    # message = request.json.get('message')
 
     return MailHandlerClass.send_mail_setup(email)

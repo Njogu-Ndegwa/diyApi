@@ -31,14 +31,6 @@ def hire_proffesional_client_email( email_address):
         "MAIL_PASSWORD": 'Resource2030'
         
         
-        
-        
-        # "MAIL_SERVER": 'smtp.mandrillapp.com',
-        # "MAIL_PORT": 587,
-        # "MAIL_USE_TLS": True,
-        # "MAIL_USE_SSL": False,
-        # "MAIL_USERNAME": 'markgichohi24@',
-        # "MAIL_PASSWORD": 'RNRFUgJwZPeJBAbrX3XwAA'
     }
     emailto = email_address
 

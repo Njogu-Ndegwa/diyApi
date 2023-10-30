@@ -19,7 +19,7 @@ class MailHandlerClass:
   def __init__(self):
     pass
 
-  def send_mail_setup(email):
+  def send_mail_setup(email, company_name, phone_number, full_name):
       app = Flask(__name__)
    
       mail_settings = {
@@ -31,14 +31,6 @@ class MailHandlerClass:
             "MAIL_PASSWORD": 'Resource2030'
             
             
-            
-            
-            # "MAIL_SERVER": 'smtp.mandrillapp.com',
-            # "MAIL_PORT": 587,
-            # "MAIL_USE_TLS": True,
-            # "MAIL_USE_SSL": False,
-            # "MAIL_USERNAME": 'markgichohi24@',
-            # "MAIL_PASSWORD": 'RNRFUgJwZPeJBAbrX3XwAA'
       }
     
 
@@ -47,12 +39,8 @@ class MailHandlerClass:
       subject = "New User SignUp"
       emailto = 'tbaraza@africa118.com'
       msg = Message(subject, sender = app.config.get('MAIL_USERNAME'), recipients = [emailto])
-      msg.html=render_template("new_signup.html", email=email)
+      msg.html=render_template("new_signup.html", email=email, company_name=company_name, phone_number=phone_number, full_name=full_name)
       
-      # return render_template("home.html", confirm_msg=confirm_msg)
-
-
-      # msg.body = emailContent
 
       try:
             with app.app_context():
@@ -62,13 +50,12 @@ class MailHandlerClass:
             data = {'message': "success"}
 
       except Exception as e:
-          print(e, 'Error')
           data = {'message': str(e)}
 
       return data
 
 
-def new_signup(email):
+def new_signup(email, company_name, phone_number, full_name):
     """
     fetchemployees with various available filters
     ---
@@ -96,8 +83,5 @@ def new_signup(email):
       200:
         description: A list of employees based on fetchemployees params
     """
-    # emailFrom = request.json.get('emailfrom')
-    # senderName = request.json.get('name')
-    # message = request.json.get('message')
 
-    return MailHandlerClass.send_mail_setup(email)
+    return MailHandlerClass.send_mail_setup(email, company_name, phone_number, full_name)

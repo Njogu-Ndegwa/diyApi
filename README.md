@@ -32,3 +32,4 @@ The code is covered by tests, to run the tests please execute
 ```
 pipenv run python -m unittest
 ```
+
