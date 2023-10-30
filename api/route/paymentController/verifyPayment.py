@@ -36,6 +36,7 @@ def verify_payment():
     # print(response.status_code)
     print(response.text)
     # Parse the XML content
+
     root = ET.fromstring(response.text)
 
     # Find the MobilePaymentRequest element
@@ -44,18 +45,20 @@ def verify_payment():
     transaction_status_request = root.find(".//Result")
     customer_name_request = root.find(".//CustomerName")
 
-    print(customer_name_request, 'Name Request')
+
     if customer_name_request is not None:
         customer_name = customer_name_request.text
     else:
         customer_name = ''
     # print(transaction_status, 'Transaction Status')
+
     if mobile_payment_request is not None:
+        print('--------57---------')
         mobile_payment_status = mobile_payment_request.text
         transaction_amount = transaction_amount_request.text
         transaction_status = transaction_status_request.text
-        print(transaction_status, 'Status')
-        print(mobile_payment_status, transaction_amount, '-------46-----', flush=True)
+        
+        print('-------62------')
         if mobile_payment_status == 'Paid':
             print(customer_name, 'Customer Name')
             save_payment_record(transaction_amount, 'MPESA', email, customer_name)
@@ -78,5 +81,9 @@ def verify_payment():
             }
             return jsonify(data)
     else:
-        print("Mobile Payment Request element not found.")
+        data = {
+            'status': 'failed'
+        }
+        return jsonify(data)
+
 

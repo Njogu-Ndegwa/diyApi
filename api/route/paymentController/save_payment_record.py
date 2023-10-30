@@ -45,37 +45,31 @@ def save_payment_record(payment_amount, payment_method, email, customer_name):
     #query_param = request.args.get('query_string', default='', type=str)
 
     invoice_number = generate_ivoice()
-    print(customer_name, invoice_number, payment_amount, payment_method)
+
+    mysql_host =  os.environ.get('DB_HOST')
+    mysql_user = os.environ.get('DB_USER')
+    mysql_password = os.environ.get('DB_PASSWORD')
+    mysql_database = os.environ.get('DB_DATABASE')
+    # Database connection parameters
+
     try:
-        mail_response = send_mail_finance(customer_name, invoice_number, payment_amount, payment_method)
+        conn = MySQLConnection(mysql_host, mysql_user, mysql_password, mysql_database)
+        try:
+            query_string = '''
+                  INSERT INTO payments (invoice_number, payment_amount, payment_method, email) VALUES(%s, %s, %s, %s);
+                               '''
+            param = (invoice_number, payment_amount, payment_method, email)
+            data = conn.query(query_string, param)
+            send_mail_finance(customer_name, invoice_number, payment_amount, payment_method)
+            print(data, 'Delete User')
+            data = {
+                'message': 'success'
+            }
+        except Exception as e:
+            data = {'message': str(e)}
+
     except Exception as e:
-        pass
-    print(mail_response, 'Email Response.....49....')
-    data = {
-        "message": "success"
-    }
-    # mysql_host =  os.environ.get('DB_HOST')
-    # mysql_user = os.environ.get('DB_USER')
-    # mysql_password = os.environ.get('DB_PASSWORD')
-    # mysql_database = os.environ.get('DB_DATABASE')
-    # # Database connection parameters
-
-    # try:
-    #     conn = MySQLConnection(mysql_host, mysql_user, mysql_password, mysql_database)
-    #     try:
-    #         query_string = '''
-    #               INSERT INTO payments (invoice_number, payment_amount, payment_method, email) VALUES(%s, %s, %s, %s);
-    #                            '''
-    #         param = (invoice_number, payment_amount, payment_method, email)
-    #         data = conn.query(query_string, param)
-    #         send_mail_finance(customer_name, invoice_number, payment_amount, payment_method)
-    #         print(data, 'Delete User')
-
-    #     except Exception as e:
-    #         data = {'message': str(e)}
-
-    # except Exception as e:
-    #     data = {'message': str(e)}
+        data = {'message': str(e)}
 
     return jsonify(data)
 
