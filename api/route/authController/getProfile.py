@@ -67,11 +67,11 @@ WHERE
                   'message': 'success',
                   'email': row[1],
                   'company_name': row[2],
-                  'business_phone_number': row[4],
+                  'business_phone_number': row[13],
                   'business_email': row[12],
                   'full_name':row[6],
                   'photo_url': row[14],
-                  'phone_number': row[13]
+                  'phone_number': row[4]
               }
               formatted_result.append(data)
             data  = formatted_result
